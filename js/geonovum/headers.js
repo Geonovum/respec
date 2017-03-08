@@ -257,7 +257,7 @@ define(
             ,   "GEO-ONF":        "Onofficiële Standaard"
             ,   "GEO-basis":      "Document"  
             }
-            type2text: {
+        ,   type2text: {
                 "no": "Norm" 
             ,   "st": "Standaard"
             ,   "im": "Informatiemodel"
