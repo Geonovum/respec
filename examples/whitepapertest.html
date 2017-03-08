@@ -7,36 +7,32 @@
     <!--<script src='https://www.w3.org/Tools/respec/respec-w3c-common' class='remove'></script>	 --> 
     <script class='remove'>
       var respecConfig = {
-        specStatus: "ED",
-        issueBase: "https://github.com/Geonovum/whitepaper-standaarden/issues/", 
-        githubAPI: "https://api.github.com/repos/Geonovum/whitepaper-standaarden",
+        specStatus: "GEO-ED",
+        specType: "pr",
         noRecTrack: true,
-       // license: "cc-by",
         editors: [
 		{
 		  name: "Linda van den Brink",
 		  company: "Geonovum",
-		  url: "http://www.geonovum.nl/"
+		  companyURL: "http://www.geonovum.nl/",
+		  mailto: "info@geonovum.nl"
 		},
 		{
 		  name: "Friso Penninga",
 		  company: "Geonovum",
-		  url: "http://www.geonovum.nl/"
+		  companyURL: "http://www.geonovum.nl/",
+		  mailto: "info@geonovum.nl"
 		}
 		],
-        edDraftURI: "https://geonovum.github.io/whitepaper-standaarden/",
-        shortName: "wps",
-		logos: [
-		{
-		  src: "http://www.geonovum.nl/sites/all/themes/insiders/logo.png",
-		  href: "http://www.geonovum.nl/",
-		  alt: "Geonovum",
-		  width: 157,
-		  height: 79,
-		  id: "geonovum-logo"
-		}
-		],
-		subtitle: "Conceptversie in ontwikkeling."
+		authors: [{
+			name: "Linda van den Brink",
+			company: "Geonovum",
+			companyURL: "http://www.geonovum.nl/",
+			mailto: "info@geonovum.nl"
+		}],
+        edDraftURI: "https://geonovum.github.io/whitepaper-standaarden",
+        shortName: "whitepaper",
+		github: "https://github.com/Geonovum/whitepaper-standaarden",
 		};
     </script>
   </head>
@@ -132,18 +128,19 @@
     <h2>Discussie</h2>
     <p>hier slimme dingen zeggen, samenvatten, zekerheden en onzekerheden duiden. vervolgonderzoek noemen</p>
 	</section>
-	<div class="issue" data-number="1"/>
-	    <p>Op deze manier kunnen we open punten opnemen in de tekst</p>
-	</div>
-	<aside class="example" title='Voorbeeld code'>
-      <p>Hier komt een voorbeeld.
-        <pre>
-        const sum = [...items]
-        .map(item => item * 2)
-        .reduce((sum, next) => sum + (next || 0) );
-        </pre>
+	<p class="issue"/>Op deze manier kunnen we open punten opnemen in de tekst</p>
+	<aside class="example" title='Voorbeeld code'>Hier komt een voorbeeld.
+      <pre>
+      const sum = [...items]
+      .map(item => item * 2)
+      .reduce((sum, next) => sum + (next || 0) );
+      </pre>
     </aside>
-	<p class="ednote" title="Voorbeeld notitie">
-    Tekst, tekst, en nog meer tekst ...<p>
+	<p class="ednote" title="Voorbeeld notitie">Tekst, tekst, en nog meer tekst ...</p>
+	<p class="warning" title="Fout">Hier zit een fout.</p>
+	<section class=appendix>
+	  <h2>Appendix A</h2>
+        <p>Appendix A onderdelen, nog meer tekst ...</p>
+    </section>
   </body>
 </html>
