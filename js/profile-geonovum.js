@@ -58,6 +58,7 @@ define([
     // "w3c/headers",
     "geonovum/headers",
     // "w3c/abstract",
+    "geonovum/abstract",
     // "w3c/conformance",
     "core/data-transform",
     "core/inlines",
