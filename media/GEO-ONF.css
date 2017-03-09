@@ -1,0 +1,7 @@
+/* Style for Geonovum Onofficiële Draft */
+
+@import "base.css";
+
+body {
+  background-image: url('/media/logos/GEO-ONF.svg')
+}
