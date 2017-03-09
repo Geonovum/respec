@@ -253,8 +253,8 @@ define(
                 "GEO-ED":         "Werkversie"
             ,   "GEO-WD":         "Draft Versie"
             ,   "GEO-FD":         "Final Draft"
-            ,   "GEO-OFF":        "Officiële Standaard"
-            ,   "GEO-ONF":        "Onofficiële Standaard"
+            ,   "GEO-OFF":        "Officiële Draft"
+            ,   "GEO-ONF":        "Onofficiële Draft"
             ,   "GEO-basis":      "Document"  
             }
         ,   type2text: {
