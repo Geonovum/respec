@@ -640,7 +640,7 @@ templates['headers.html'] = template({"1":function(container,depth0,helpers,part
 },"55":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return "    <dd class='copyright'>\r\n      <abbr title='Creative Commons Naamsvermelding 3.0 Licentie'>\r\n        <a href='https://creativecommons.org/licenses/by-nd/3.0/nl/'>\r\n            <img src='/media/CreativeCommons3.0.png' alt='CreativeCommons' width='588px' height='49px'>\r\n        </a>\r\n      </abbr>\r\n    </dd>\r\n"
+  return "    <dd class='copyright'>\r\n      <abbr title='Creative Commons Naamsvermelding 3.0 Licentie'>\r\n        <a href='https://creativecommons.org/licenses/by-nd/3.0/nl/'>\r\n            <img src='/media/logos/CreativeCommons3.0.png' alt='CreativeCommons' width='588px' height='49px'>\r\n        </a>\r\n      </abbr>\r\n    </dd>\r\n"
     + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.additionalCopyrightHolders : depth0),{"name":"if","hash":{},"fn":container.program(56, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"56":function(container,depth0,helpers,partials,data) {
     var stack1, helper;
@@ -681,7 +681,7 @@ templates['headers.html'] = template({"1":function(container,depth0,helpers,part
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.otherLinks : depth0),{"name":"if","hash":{},"fn":container.program(32, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "  </dl>\r\n  <dt>Rechtenbeleid:</dt>  \r\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.overrideCopyright : depth0),{"name":"if","hash":{},"fn":container.program(53, data, 0),"inverse":container.program(55, data, 0),"data":data})) != null ? stack1 : "")
-    + "  \r\n  <hr title=\"Separator for header\">\r\n</div>\r\n";
+    + "  <hr title=\"Separator for header\">\r\n</div>\r\n";
 },"useData":true});
 templates['permalinks.css'] = template({"1":function(container,depth0,helpers,partials,data) {
     return "section > *:hover > span.permalink { visibility: visible; }\r\n";
