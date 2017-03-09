@@ -4,7 +4,7 @@
       {{showLogos logos}}
     {{else}}
         <a class='logo' href='http://www.geonovum.nl/'>
-            <img width='157' height='79' src='http://www.geonovum.nl/sites/all/themes/insiders/logo.png' alt='Geonovum'>
+            <img width='157' height='79' src='/media/logos/Geonovum.png' alt='Geonovum'>
         </a>
     {{/if}}
     </p>
@@ -21,20 +21,24 @@
         <dt>{{l10n.latest_published_version}}</dt>
         <dd>{{#if latestVersion}}<a href='{{latestVersion}}'>{{latestVersion}}</a>{{else}}none{{/if}}</dd>
     {{/unless}}
-    {{#if edDraftURI}}
-        <dt>{{l10n.latest_editors_draft}}</dt>
-        <dd><a href='{{edDraftURI}}'>{{edDraftURI}}</a></dd>
-    {{/if}}
+    {{#unless isOfficial}}
+        {{#if edDraftURI}}
+            <dt>{{l10n.latest_editors_draft}}</dt>
+            <dd><a href='{{edDraftURI}}'>{{edDraftURI}}</a></dd>
+        {{/if}}
+    {{/unless}}
     <dt>{{#if multipleEditors}}{{l10n.editors}}{{else}}{{l10n.editor}}{{/if}}</dt>{{showPeople "Editor" editors}}
     {{#if authors}}
         <dt>{{#if multipleAuthors}}{{l10n.authors}}{{else}}{{l10n.author}}{{/if}}</dt>
     {{showPeople "Author" authors}}
     {{/if}}
-    {{#if github}}
-        <dt>Github:</dt>
-        <dd><a href='{{github}}'>Repository</a></dd>
-        <dd><a href='{{github}}/issues'>Issues</a></dd>
-    {{/if}}
+    {{#unless isOfficial}}
+        {{#if github}}
+            <dt>Github:</dt>
+            <dd><a href='{{github}}'>Repository</a></dd>
+            <dd><a href='{{github}}/issues'>Issues</a></dd>
+        {{/if}}
+    {{/unless}}
     {{#if otherLinks}}
       {{#each otherLinks}}
         {{#if key}}
@@ -73,19 +77,12 @@
     {{/if}}
   </dl>
   <dt>Rechtenbeleid:</dt>  
-  {{#if overrideCopyright}}
-    {{{overrideCopyright}}}
-  {{else}}
-    <dd class='copyright'>
-      <abbr title='Creative Commons Naamsvermelding 3.0 Licentie'>
-        <a href='https://creativecommons.org/licenses/by-nd/3.0/nl/'>
-            <img src='/media/logos/CreativeCommons3.0.png' alt='CreativeCommons' width='588px' height='49px'>
-        </a>
-      </abbr>
-    </dd>
-    {{#if additionalCopyrightHolders}}
-        <p class='copyright'>{{{additionalCopyrightHolders}}}</p>
-    {{/if}}
-  {{/if}}
+  <p class='copyright'>
+    <abbr title='Creative Commons Naamsvermelding 3.0 Licentie'>
+      <a href='https://creativecommons.org/licenses/by-nd/3.0/nl/'>
+        <img src='/media/logos/CC-Licentie.png' alt='Naamsvermelding-GeenAfgeleideWerken 3.0 Nederland' width='588px' height='49px'>
+      </a>
+    </abbr>
+  </p>
   <hr title="Separator for header">
 </div>
