@@ -267,6 +267,8 @@ define(
         ,   noTrackStatus:  ["GEO-basis"]
         ,   noSotD:  ["PR", "HR", "WA"]
         ,   run:    function (conf, doc, cb) {
+                conf.specStatus = conf.specStatus.toUpperCase()
+                conf.specType = conf.specType.toUpperCase()
                 conf.isBasic = (conf.specStatus === "GEO-basis");
                 conf.isRegular = (!conf.isBasic);
                 conf.isNoTrack = $.inArray(conf.specStatus, this.noTrackStatus) >= 0;
