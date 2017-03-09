@@ -42,24 +42,9 @@ define([
   function createBaseStyle() {
     var link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "https://www.w3.org/StyleSheets/TR/2016/base.css";
+    link.href = "/media/base.css";
     link.classList.add("removeOnSave");
     return link;
-  }
-
-  function selectStyleVersion(styleVersion) {
-    var version = "";
-    switch (styleVersion) {
-      case null:
-      case true:
-        version = "2016";
-        break;
-      default:
-        if (styleVersion && !isNaN(styleVersion)) {
-          version = styleVersion.toString().trim();
-        }
-    }
-    return version;
   }
 
   function createResourceHints() {
@@ -72,11 +57,11 @@ define([
         as: "script",
       }, {
         hint: "preload", // all specs include on base.css.
-        href: "https://www.w3.org/StyleSheets/TR/2016/base.css",
+        href: "/media/base.css",
         as: "style",
       }, {
         hint: "preload", // all specs show the logo.
-        href: "https://www.w3.org/StyleSheets/TR/2016/logos/W3C",
+        href: "/media/logos/Geonovum",
         as: "image",
       }]
       .map(utils.createResourceHint.bind(utils))
@@ -121,27 +106,15 @@ define([
         case "GEO-FD":
           styleFile += "GEO-FD.css";
           break;
-        case "GEO-OFF":
-          styleFile += "GEO-OFF.css";
-          break;
-        case "GEO-ONF":
-          styleFile += "GEO-ONF.css";
+        case "GEO-DEF":
+          styleFile += "GEO-DEF.css";
           break;
         default:
           styleFile = "base.css";
       }
-
-      // Select between released styles and experimental style.
-      var version = selectStyleVersion(conf.useExperimentalStyles || "2016");
-      // Attach W3C fixup script after we are done.
-      if (version && !conf.noToc) {
-        pubsubhub.sub("end-all", function() {
-          attachFixupScript(doc, version);
-        }, { once: true });
-      }
-      var finalVersionPath = (version) ? version + "/" : "";
+      
+      attachFixupScript(doc, "2016")
       finalStyleURL = styleBaseURL + styleFile
-
       utils.linkCSS(doc, finalStyleURL);
       cb();
     }

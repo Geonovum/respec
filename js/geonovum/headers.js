@@ -253,32 +253,31 @@ define(
                 "GEO-ED":         "Werkversie"
             ,   "GEO-WD":         "Draft Versie"
             ,   "GEO-FD":         "Final Draft"
-            ,   "GEO-OFF":        "Officiële Draft"
-            ,   "GEO-ONF":        "Onofficiële Draft"
+            ,   "GEO-DEF":        "Definitief"
             ,   "GEO-basis":      "Document"  
             }
         ,   type2text: {
-                "no": "Norm" 
-            ,   "st": "Standaard"
-            ,   "im": "Informatiemodel"
-            ,   "pr": "Praktijkrichtlijn"
-            ,   "hr": "Handreiking"
-            ,   "wa": "Werkafspraak"
+                "NO": "Norm" 
+            ,   "ST": "Standaard"
+            ,   "IM": "Informatiemodel"
+            ,   "PR": "Praktijkrichtlijn"
+            ,   "HR": "Handreiking"
+            ,   "WA": "Werkafspraak"
             }
-        ,   recTrackStatus: ["GEO-WD", "GEO-FD", "GEO-OFF"]
-        ,   noTrackStatus:  ["GEO-ONF", "GEO-basis"]
-
+        ,   noTrackStatus:  ["GEO-basis"]
+        ,   noSotD:  ["PR", "HR", "WA"]
         ,   run:    function (conf, doc, cb) {
                 conf.isBasic = (conf.specStatus === "GEO-basis");
-                conf.isUnofficial = (conf.specStatus === "GEO-ONF");
-                conf.isRegular = (!conf.isBasic && !conf.isUnofficial);
+                conf.isRegular = (!conf.isBasic);
                 conf.isNoTrack = $.inArray(conf.specStatus, this.noTrackStatus) >= 0;
-                conf.isRecTrack = conf.noRecTrack ? false : $.inArray(conf.specStatus, this.recTrackStatus) >= 0;
+                conf.isNoSotD = $.inArray(conf.specType, this.noSotD) >= 0;
+                conf.isOfficial = (conf.specStatus === "GEO-DEF")
                 //Some errors
                 if (!conf.specStatus) pubsubhub.pub("error", "Missing required configuration: specStatus");
-                if (!conf.github) pubsubhub.pub("error", "Missing required configuration: github")
-                if (!conf.specType) pubsubhub.pub("error", "Missing required configuration: specType");
+                if (conf.isRegular && !conf.specType) pubsubhub.pub("error", "Missing required configuration: specType");
+                if (!conf.isOfficial && !conf.isBasic) pubsubhub.pub("error", "Missing required configuration: edDraftURI");
                 if (conf.isRegular && !conf.shortName) pubsubhub.pub("error", "Missing required configuration: shortName");
+                if (!conf.isOfficial && !conf.github) pubsubhub.pub("error", "Missing required configuration: github")
                 //Titles
                 conf.title = doc.title || "No Title";
                 if (!conf.subtitle) conf.subtitle = "";
@@ -298,10 +297,10 @@ define(
                 }
                 var publishSpace = "st";             
                 if (conf.isRegular) conf.thisVersion =  "http://www.geostandaarden.nl/" + publishSpace + "/" +
-                                                        conf.specType + "-" + conf.shortName + "/";
+                                                        conf.specType.toLowerCase() + "-" + conf.shortName + "/";
                 if (conf.isRegular) conf.latestVersion = "http://www.geostandaarden.nl/" + publishSpace + "/" + 
                                                         conf.publishDate.getFullYear() + "/" + 
-                                                        conf.specType + "-" + conf.shortName + "-" + utils.concatDate(conf.publishDate) + "/";
+                                                        conf.specType.toLowerCase() + "-" + conf.shortName + "-" + utils.concatDate(conf.publishDate) + "/";
                 //Authors & Editors
                 if (!conf.editors || conf.editors.length === 0) pubsubhub.pub("error", "At least one editor is required");
                 var peopCheck = function (it) {

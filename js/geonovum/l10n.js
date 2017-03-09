@@ -101,7 +101,7 @@ define(
                 ,   authors:                    "Auteurs:"
                 ,   abstract:                   "Samenvatting"
                 ,   sotd:                       "Status van dit document"
-                ,   status_at_publication:      "Deze paragraaf beschrijft de status van dit document ten tijde van publicatie. Andere documenten kunnen dit document vervangen. Een lijst van actuele Geonovum publicaties en meest recente revisie van dit document kan worden gevonden op <a href='http://www.geonovum.nl'>Geonovum website </a> op http://www.geonovum.nl."
+                ,   status_at_publication:      "Deze paragraaf beschrijft de status van dit document ten tijde van publicatie. Het is mogelijk dat er actuelere versies van dit document bestaan. Een lijst van Geonovum publicaties en de laatste gepubliceerde versie van dit document zijn te vinden op <a href='http://www.geonovum.nl/wegwijzer/standaarden'>http://www.geonovum.nl/wegwijzer/standaarden</a>."
                 ,   toc:                        "Inhoudsopgave"
                 ,   note:                       "Noot"
                 ,   editors_note:               "Redactionele Noot"
