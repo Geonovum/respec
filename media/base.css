@@ -146,6 +146,10 @@
 
     p.copyright,
     p.copyright small { font-size: small }
+    
+    .copyright a[href],  .copyright a[href]:hover {
+        border: none;
+    }
 
 /** Back to Top / ToC Toggle **************************************************/
 
