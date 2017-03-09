@@ -14,7 +14,7 @@ define(
     function (pubsubhub, css) {
         var makeTitle = function (conf, $el, num, report) {
             var txt = (num > 0) ? " " + num : ""
-            ,   $tit = $("<div class='example-title'><span>Example" + txt + "</span></div>");
+            ,   $tit = $("<div class='example-title'><span>" + conf.l10n.example + txt + "</span></div>");
             report.title = $el.attr("title");
             if (report.title) {
                 $tit.append($("<span style='text-transform: none'>: " + report.title + "</span>"));
