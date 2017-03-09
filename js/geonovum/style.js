@@ -106,38 +106,29 @@ define([
         pubsubhub.pub("warn", warn);
       }
 
-      var styleBaseURL = "https://www.w3.org/StyleSheets/TR/{version}";
+      var styleBaseURL = "/media/";
       var finalStyleURL = "";
-      var styleFile = "W3C-";
+      var styleFile = "";
 
       // Figure out which style file to use.
-      switch (conf.specStatus.toUpperCase()) {
-        case "CG-DRAFT":
-        case "CG-FINAL":
-        case "BG-DRAFT":
-        case "BG-FINAL":
-          styleFile = conf.specStatus.toLowerCase();
+      switch (conf.specStatus) {
+        case "GEO-ED":
+          styleFile += "GEO-ED.css";
           break;
-        case "FPWD":
-        case "LC":
-        case "WD-NOTE":
-        case "LC-NOTE":
-          styleFile += "WD";
+        case "GEO-WD":
+          styleFile += "GEO-WD.css";
           break;
-        case "WG-NOTE":
-        case "FPWD-NOTE":
-          styleFile += "WG-NOTE.css";
+        case "GEO-FD":
+          styleFile += "GEO-FD.css";
           break;
-        case "UNOFFICIAL":
-          styleFile += "UD";
+        case "GEO-OFF":
+          styleFile += "GEO-OFF.css";
           break;
-        case "FINDING":
-        case "FINDING-DRAFT":
-        case "BASE":
-          styleFile = "base.css";
+        case "GEO-ONF":
+          styleFile += "GEO-ONF.css";
           break;
         default:
-          styleFile += conf.specStatus;
+          styleFile = "base.css";
       }
 
       // Select between released styles and experimental style.
@@ -149,8 +140,7 @@ define([
         }, { once: true });
       }
       var finalVersionPath = (version) ? version + "/" : "";
-      finalStyleURL = styleBaseURL.replace("{version}", finalVersionPath);
-      finalStyleURL += styleFile;
+      finalStyleURL = styleBaseURL + styleFile
 
       utils.linkCSS(doc, finalStyleURL);
       cb();
