@@ -2,8 +2,7 @@
     <p>
       <em>{{{l10n.status_at_publication}}}</em>
     </p>
-    {{#unless isNoSotD}}
-        {{#switch specStatus}}
+    {{#switch specStatus}}
         {{#case "GEO-DEF"}}
             <p>Geonovum definitieve standaard.<p>
         {{/case}}
@@ -21,6 +20,6 @@
             aanleiding van consultaties zijn doorgevoerd. De programmaraad van Geonovum beoordeelt 
             dit definitief concept. Keurt zij het goed, dan is er een nieuwe standaard.</p>
         {{/case}}
-        {{/switch}}
-    {{/unless}}
+    {{/switch}}
+    {{sotdCustomParagraph}}
 </section>
