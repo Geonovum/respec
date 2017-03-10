@@ -332,9 +332,8 @@ define(
                 //SotD
                 var $sotd = $("#sotd");
                 conf.sotdCustomParagraph = $sotd.html();
-                $sotd.remove();             
-                var sotd;
-                sotd = sotdTmpl(conf);
+                $sotd.remove();
+                var sotd = sotdTmpl(conf);
                 if (sotd) $(sotd).insertAfter($("#abstract"));
                 cb();
             }
