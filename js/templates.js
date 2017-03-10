@@ -689,34 +689,32 @@ templates['permalinks.css'] = template({"1":function(container,depth0,helpers,pa
     + "}\r\n\r\n.permalink a, .permalink a:link, .permalink a:visited, .permalink a:hover, .permalink a:focus, .permalink a:active\r\n{\r\n	background:transparent !important;\r\n	text-decoration:none;\r\n    font-weight: bold;\r\n	color:#666 !important;\r\n}\r\n\r\n.permalink abbr {\r\n	border:0;\r\n}\r\n";
 },"useData":true});
 templates['sotd.html'] = template({"1":function(container,depth0,helpers,partials,data) {
-    var stack1;
-
-  return ((stack1 = (helpers["switch"] || (depth0 && depth0["switch"]) || helpers.helperMissing).call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.specStatus : depth0),{"name":"switch","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
-},"2":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing;
 
-  return ((stack1 = (helpers["case"] || (depth0 && depth0["case"]) || alias2).call(alias1,"GEO-DEF",{"name":"case","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ((stack1 = (helpers["case"] || (depth0 && depth0["case"]) || alias2).call(alias1,"GEO-ED",{"name":"case","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ((stack1 = (helpers["case"] || (depth0 && depth0["case"]) || alias2).call(alias1,"GEO-WD",{"name":"case","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ((stack1 = (helpers["case"] || (depth0 && depth0["case"]) || alias2).call(alias1,"GEO-FD",{"name":"case","hash":{},"fn":container.program(9, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
-},"3":function(container,depth0,helpers,partials,data) {
+  return ((stack1 = (helpers["case"] || (depth0 && depth0["case"]) || alias2).call(alias1,"GEO-DEF",{"name":"case","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers["case"] || (depth0 && depth0["case"]) || alias2).call(alias1,"GEO-ED",{"name":"case","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers["case"] || (depth0 && depth0["case"]) || alias2).call(alias1,"GEO-WD",{"name":"case","hash":{},"fn":container.program(6, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers["case"] || (depth0 && depth0["case"]) || alias2).call(alias1,"GEO-FD",{"name":"case","hash":{},"fn":container.program(8, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+},"2":function(container,depth0,helpers,partials,data) {
     return "            <p>Geonovum definitieve standaard.<p>\r\n";
-},"5":function(container,depth0,helpers,partials,data) {
+},"4":function(container,depth0,helpers,partials,data) {
     return "            <p>Dit is een werkversie die op elk moment kan worden gewijzigd, verwijderd of vervangen \r\n            door andere documenten. Het is geen door de werkgroep goedgekeurde consultatieversie.<p>\r\n";
-},"7":function(container,depth0,helpers,partials,data) {
+},"6":function(container,depth0,helpers,partials,data) {
     return "            <p>Dit is een door de werkgroep goedgekeurde consultatieversie. Commentaar over dit \r\n            document kan gestuurd worden naar <a href=\"mailto:geo-standaarden@geonovum.nl\">\r\n            geo-standaarden@geonovum.nl</a>.</p>\r\n";
-},"9":function(container,depth0,helpers,partials,data) {
+},"8":function(container,depth0,helpers,partials,data) {
     return "            <p>Dit is een definitief concept van de nieuwe versie van de standaard. Wijzigingen naar \r\n            aanleiding van consultaties zijn doorgevoerd. De programmaraad van Geonovum beoordeelt \r\n            dit definitief concept. Keurt zij het goed, dan is er een nieuwe standaard.</p>\r\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=container.lambda;
+    var stack1, helper, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing;
 
   return "<section id='sotd' class='introductory'><h2>"
-    + container.escapeExpression(alias1(((stack1 = (depth0 != null ? depth0.l10n : depth0)) != null ? stack1.sotd : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.l10n : depth0)) != null ? stack1.sotd : stack1), depth0))
     + "</h2>\r\n    <p>\r\n      <em>"
     + ((stack1 = alias1(((stack1 = (depth0 != null ? depth0.l10n : depth0)) != null ? stack1.status_at_publication : stack1), depth0)) != null ? stack1 : "")
     + "</em>\r\n    </p>\r\n"
-    + ((stack1 = helpers.unless.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.isNoSotD : depth0),{"name":"unless","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</section>\r\n";
+    + ((stack1 = (helpers["switch"] || (depth0 && depth0["switch"]) || alias4).call(alias3,(depth0 != null ? depth0.specStatus : depth0),{"name":"switch","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "    "
+    + alias2(((helper = (helper = helpers.sotdCustomParagraph || (depth0 != null ? depth0.sotdCustomParagraph : depth0)) != null ? helper : alias4),(typeof helper === "function" ? helper.call(alias3,{"name":"sotdCustomParagraph","hash":{},"data":data}) : helper)))
+    + "\r\n</section>\r\n";
 },"useData":true});
 return templates;
 });
