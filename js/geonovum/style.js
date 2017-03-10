@@ -96,7 +96,7 @@ define([
       var styleFile = "";
 
       // Figure out which style file to use.
-      switch (conf.specStatus) {
+      switch (conf.specStatus.toUpperCase()) {
         case "GEO-ED":
           styleFile += "GEO-ED.css";
           break;
