@@ -650,7 +650,7 @@ templates['headers.html'] = template({"1":function(container,depth0,helpers,part
     + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
     + "</h1>\r\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.subtitle : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "    <h2><abbr title=\"Geonovum\">Geonovum</abbr> "
+    + "    <h2>Geonovum "
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.isRegular : depth0),{"name":"if","hash":{},"fn":container.program(10, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + alias4(((helper = (helper = helpers.textStatus || (depth0 != null ? depth0.textStatus : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"textStatus","hash":{},"data":data}) : helper)))
     + " \r\n    <time "
