@@ -254,7 +254,7 @@ define(
             ,   "GEO-WD":         "Draft Versie"
             ,   "GEO-FD":         "Final Draft"
             ,   "GEO-DEF":        "Definitief"
-            ,   "GEO-basis":      "Document"  
+            ,   "GEO-BASIS":      "Document"  
             }
         ,   type2text: {
                 "NO": "Norm" 
@@ -264,20 +264,18 @@ define(
             ,   "HR": "Handreiking"
             ,   "WA": "Werkafspraak"
             }
-        ,   noTrackStatus:  ["GEO-basis"]
-        ,   noSotD:  ["PR", "HR", "WA"]
+        ,   noTrackStatus:  ["GEO-BASIS"]
         ,   run:    function (conf, doc, cb) {
                 conf.specStatus = conf.specStatus.toUpperCase()
                 conf.specType = conf.specType.toUpperCase()
-                conf.isBasic = (conf.specStatus === "GEO-basis");
+                conf.isBasic = (conf.specStatus === "GEO-BASIS");
                 conf.isRegular = (!conf.isBasic);
                 conf.isNoTrack = $.inArray(conf.specStatus, this.noTrackStatus) >= 0;
-                conf.isNoSotD = $.inArray(conf.specType, this.noSotD) >= 0;
                 conf.isOfficial = (conf.specStatus === "GEO-DEF")
                 //Some errors
                 if (!conf.specStatus) pubsubhub.pub("error", "Missing required configuration: specStatus");
                 if (conf.isRegular && !conf.specType) pubsubhub.pub("error", "Missing required configuration: specType");
-                if (!conf.isOfficial && !conf.isBasic) pubsubhub.pub("error", "Missing required configuration: edDraftURI");
+                if (!conf.edDraftURI && !conf.isOfficial && !conf.isBasic) pubsubhub.pub("error", "Missing required configuration: edDraftURI");
                 if (conf.isRegular && !conf.shortName) pubsubhub.pub("error", "Missing required configuration: shortName");
                 if (!conf.isOfficial && !conf.github) pubsubhub.pub("error", "Missing required configuration: github")
                 //Titles
@@ -333,8 +331,6 @@ define(
                 $("body", doc).prepend($(bp)).addClass("h-entry");
                 //SotD
                 var $sotd = $("#sotd");
-                if ((!conf.isNoTrack) && !$sotd.length)
-                    pubsubhub.pub("error", "A custom SotD paragraph is required for your type of document.");
                 conf.sotdCustomParagraph = $sotd.html();
                 $sotd.remove();             
                 var sotd;
