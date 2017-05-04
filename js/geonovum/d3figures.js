@@ -1,38 +1,57 @@
 define(
-  ["geonovum/deps/d3",
-   "core/pubsubhub"],
-  function(d3, pubsubhub){
+  ["geonovum/deps/d3"],
+  function(d3){
   /**
    * Makes figures scalable via zoom and pan function
    *
-   */
+   */ 
+  
+  //function reset() {
+  //  svg.transition()
+  //     .duration(750)
+  //     .attr("transform", "translate(0, 0)scale(1)")
+  //     .call(d3.zoom());
+  //};
+
   return {
     run: function(conf, doc, cb) {
-       Array
+      Array
         .from(doc.querySelectorAll("figure.scalable img"))
         .forEach(function(image){
-          svg = d3.select(image.parentElement)
-                  .insert("svg", ":first-child")
-                  .attr("width", ((image.getAttribute("width")) ? image.getAttribute("width") : "100%"))
-                  .attr("height", ((image.getAttribute("height")) ? image.getAttribute("height") : 600))
-                  .style("border", "1px solid black");
-          g = svg.append("g")
-                 .attr("transform", "translate([-0, 0])scale(1)")
-                 .call(d3.zoom()
-                   .scaleExtent([1, 6])
-                   .on("zoom", function () {
-                   g.attr("transform", d3.event.transform)
-                 }))
-                 .append("g");
+          console.log(image, image.width, image.height);
+          var svg = d3.select(image.parentElement)
+                      .insert("svg", ":first-child")
+                      .attr("id", (image.id ? image.id : ""))
+                      .attr("alt", (image.alt ? image.alt : ""));
+          var g = svg.append("g")
+                     .attr("transform", "translate(0, 0)scale(1)")
+                     .call(d3.zoom()
+                       .scaleExtent([1, 6])
+                       .on("zoom", function () {
+                       g.attr("transform", d3.event.transform)
+                     }))
+                     .append("g");
           g.append("image")
-           .attr("width",  ((image.getAttribute("width")) ? image.getAttribute("width") : "100%"))
-           .attr("height", ((image.getAttribute("height")) ? image.getAttribute("height") : 600))
-           .attr("id", ((image.getAttribute("id")) ? image.getAttribute("id") : ""))
-           .attr("alt", ((image.getAttribute("alt")) ? image.getAttribute("alt") : ""))
-           .attr("src", image.getAttribute("src"))
-           .attr("xlink:href", image.getAttribute("src"));
+           .attr("height", ((image.height < 600) ? image.height : image.height = 600))
+           .attr("width", ((image.width) ? image.width : image.width = "auto"))
+           .attr("src", image.src)
+           .attr("xlink:href", image.src);
+           
+          var reset_button = d3.select(image.parentElement)
+                               .insert("button", ":nth-child(2)")
+                               .attr("class", "")
+                               .attr("type", "button")
+                               .text("Reset");
+          //d3.select(reset_button).on("click", reset);
+          var enlarge_button = d3.select(image.parentElement)
+                                 .insert("button", ":nth-child(2)")
+                                 .attr("class", "")
+                                 .attr("type", "button")
+                                 .text("Enlarge");
+          d3.select(enlarge_button).on("click", window.open(image.src));
+          
           image.remove();
         });
       cb();
-  }};
-});       
+    }};
+  });       
