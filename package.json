@@ -21,6 +21,7 @@
     "babel-preset-env": "^1.4.0",
     "chai": "^3.5.0",
     "clipboard": "^1.6.1",
+    "d3": "^4.9.1",
     "domReady": "github:requirejs/domReady",
     "glob": "^7.1.1",
     "handlebars": "^4.0.7",
