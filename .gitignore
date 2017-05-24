@@ -68,4 +68,7 @@ js/geonovum/headers.js
 js/geonovum/informative.js
 js/geonovum/linter.js
 js/geonovum/permalinks.js
+js/geonovum/seo.js
 js/geonovum/style.js
+js/geonovum/ui/about-respec.js
+js/geonovum/ui/dfn-list.js
