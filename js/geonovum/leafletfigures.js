@@ -5,15 +5,14 @@ define(
    * Makes figures scalable via zoom and pan function
    *
    */
+  "use strict";
   return {
     run: function(conf, doc, cb) {
       Array
         .from(doc.querySelectorAll("figure.scalable img"))
-        .forEach(function(image) {
-          var imgDimensions = {width:image.width, height:image.height};
-          
-          container = image.parentElement;
-          div = document.createElement("div");
+        .forEach(function(image) { 
+          var container = image.parentElement;
+          var div = document.createElement("div");
           div.id = "leaflet-figure";
           container.insertBefore(div, image);
           
@@ -21,19 +20,21 @@ define(
             maxZoom: 8,
             minZoom: -8,
             crs: L.CRS.Simple
-          }).setView([imgDimensions.height/2, imgDimensions.width/2], -1);
+          }).setView([image.height/2, image.width/2], -1);
           
           var imageUrl = image.src;
           
           var imageBounds = [
-            [imgDimensions.width , 0],
-            [0, imgDimensions.height]
+            [image.width , 0],
+            [0, image.height]
           ];
           
           L.imageOverlay(imageUrl, imageBounds).addTo(map);
+          
+          map.fitBounds(imageBounds);
           
           image.remove();
         });
       cb();
     }};
-  }); 
+  });
