@@ -1,0 +1,14 @@
+/*
+ * Local stylesheet
+ * Geonovum ReSpec
+ *
+ */
+ 
+/* Leaflet */
+@import "../js/geonovum/deps/leaflet.css";
+  
+#leaflet-figure {
+  border: 1px solid black;
+  width: 100%;
+  height: 600px;
+}
