@@ -14,26 +14,26 @@ define(
           var container = image.parentElement;
           var div = document.createElement("div");
           div.id = "leaflet-figure";
-          container.insertBefore(div, image);
+          container.replaceChild(div, image);
+          
+          console.log(image.width, image.height);
           
           var map = L.map(div, {
             maxZoom: 8,
             minZoom: -8,
             crs: L.CRS.Simple
-          }).setView([image.height/2, image.width/2], -1);
+          }).setView([image.height/2, image.width/2], 0);
           
           var imageUrl = image.src;
           
           var imageBounds = [
-            [image.width , 0],
-            [0, image.height]
+            [0, 0],
+            [image.height, image.width],
           ];
           
           L.imageOverlay(imageUrl, imageBounds).addTo(map);
           
-          map.fitBounds(imageBounds);
-          
-          image.remove();
+          //map.fitBounds(imageBounds);
         });
       cb();
     }};
