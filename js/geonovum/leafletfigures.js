@@ -15,13 +15,14 @@ define(["geonovum/deps/leaflet"], function(L) {
           div.id = "leaflet-figure";
           container.replaceChild(div, image);
           var map = L.map(div, {
-            maxZoom: 8,
-            minZoom: -8,
+            maxZoom: 4,
+            minZoom: -4,
             center: [0, 0],
             crs: L.CRS.Simple,
-          }).setView([image.height / 2, image.width / 2], 0);
+          }).setView([image.height / 2, image.width / 2], 1);
           var imageBounds = [[0, 0], [image.height, image.width]];
           L.imageOverlay(image.src, imageBounds).addTo(map);
+          map.fitBounds(imageBounds);
         });
       });
       cb();
