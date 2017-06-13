@@ -26,7 +26,6 @@ const srcDesMap = new Map([
   ["./node_modules/webidl2/lib/webidl2.js", "./js/deps/"],
   ["./node_modules/whatwg-fetch/fetch.js", "./js/deps/"],
   ["./node_modules/leaflet/dist/leaflet.js", "./js/geonovum/deps/"],
-  ["./node_modules/leaflet/dist/leaflet.css", "./js/geonovum/deps/"],
 ]);
 
 function makePathResolver(base) {
