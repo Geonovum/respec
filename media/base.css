@@ -578,6 +578,18 @@
 
     /* DL list is indented 2em, but figure inside it is not */
     dd > .figure, dd > figure { margin-left: -2em }
+    
+/******************************************************************************/
+/*                              Leaflet Figures                               */
+/******************************************************************************/
+  
+#leaflet-figure {
+    background: #FFF;
+    border: 1px solid #8C8C8C;
+    width: 100%;
+    height: 600px;
+    margin-bottom: 10px;
+}
 
 /******************************************************************************/
 /*                             Colored Boxes                                  */
