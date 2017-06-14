@@ -3,3 +3,16 @@
  * Geonovum ReSpec
  *
  */
+.leaflet-control-attribution {
+  word-wrap: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+
+a[href]:not(.leaflet-top):focus,
+a[href]:not(.leaflet-top):hover {
+    background: #f8f8f8;
+    background: rgba(75%, 75%, 75%, .25);
+    border-bottom-width: 3px;
+    margin-bottom: -2px;
+}

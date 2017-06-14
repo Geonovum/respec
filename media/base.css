@@ -495,7 +495,7 @@
 /** General Hyperlinks ********************************************************/
 
     /* We hyperlink a lot, so make it less intrusive */
-    a[href] {
+    a[href]:not(.leaflet-top .leaflet-left) {
         color: #034575;
         text-decoration: none;
         border-bottom: 1px solid #707070;
@@ -515,7 +515,7 @@
         border-bottom-width: 3px;
         margin-bottom: -2px;
     }
-    a[href]:active {
+    a[href]:not(.leaflet-top .leaflet-left):active {
         color: #C00;
         border-color: #C00;
     }
@@ -602,7 +602,7 @@
   display: block;
   text-align: center;
   text-decoration: none;
-  color: #034575;
+  color: black;
 }
 
 .leaflet-bar button {
