@@ -48,10 +48,13 @@ function createBaseStyle() {
   return link;
 }
 
-function createLeafletStyle() {
+function createStyle(css_name) {
   var link = document.createElement("link");
   link.rel = "stylesheet";
-  link.href = "https://tools.geostandaarden.nl/respec/style/leaflet.css";
+  link.href = "https://tools.geostandaarden.nl/respec/style/{0}.css".replace(
+    "{0}",
+    css_name
+  );
   link.classList.add("removeOnSave");
   return link;
 }
@@ -92,7 +95,8 @@ var elements = createResourceHints();
 elements.appendChild(createBaseStyle());
 if (document.body.querySelector("figure.scalable")) {
   // Apply leaflet style if class scalable is present
-  elements.appendChild(createLeafletStyle());
+  elements.appendChild(createStyle("leaflet"));
+  elements.appendChild(createStyle("font-awesome"));
 }
 if (!document.head.querySelector("meta[name=viewport]")) {
   // Make meta viewport the first element in the head.

@@ -1,4 +1,7 @@
-define(["geonovum/deps/leaflet"], function(L) {
+define(["geonovum/deps/leaflet", "geonovum/deps/easy-button"], function(
+  L,
+  easyButton
+) {
   /**
    * Makes figures scalable via zoom and pan function
    *
@@ -21,6 +24,12 @@ define(["geonovum/deps/leaflet"], function(L) {
             crs: L.CRS.Simple,
           }).setView([image.height / 2, image.width / 2], 1);
           var imageBounds = [[0, 0], [image.height, image.width]];
+          L.easyButton("fa-arrows-alt", function() {
+            window.open(image.src, "_blank");
+          }).addTo(map);
+          L.easyButton("fa-globe", function() {
+            map.fitBounds(imageBounds);
+          }).addTo(map);
           L.imageOverlay(image.src, imageBounds).addTo(map);
           map.fitBounds(imageBounds);
         });

@@ -44,6 +44,7 @@
     "karma-safari-launcher": "^1.0.0",
     "karma-safaritechpreview-launcher": "0.0.5",
     "karma-verbose-summary-reporter": "0.0.1",
+    "leaflet-easybutton": "^2.2.0",
     "mocha": "^3.4.2",
     "moment": "^2.18.1",
     "requirejs": "^2.3.3",
