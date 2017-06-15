@@ -508,8 +508,8 @@
     }
 
     /* Use distinguishing colors when user is interacting with the link */
-    a[href]:focus,
-    a[href]:hover {
+    a[href]:not(.leaflet-control-zoom .leaflet-bar .leaflet-control):focus,
+    a[href]:not(.leaflet-control-zoom .leaflet-bar .leaflet-control):hover {
         background: #f8f8f8;
         background: rgba(75%, 75%, 75%, .25);
         border-bottom-width: 3px;
