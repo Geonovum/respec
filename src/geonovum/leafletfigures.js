@@ -4,32 +4,30 @@
  */
 import L from "geonovum/deps/leaflet";
 import easyButton from "geonovum/deps/easy-button";
+import "deps/regenerator";
 
-export function run(conf, doc, cb) {
-  doc.respecIsReady.then(function() {
-    Array.from(doc.querySelectorAll("figure.scalable img")).forEach(function(
-      image
-    ) {
-      var container = image.parentElement;
-      var div = doc.createElement("div");
-      div.id = "leaflet-figure";
-      container.replaceChild(div, image);
-      var map = L.map(div, {
-        maxZoom: 4,
-        minZoom: -4,
-        center: [0, 0],
-        crs: L.CRS.Simple,
-      }).setView([image.height / 2, image.width / 2], 1);
-      var imageBounds = [[0, 0], [image.height, image.width]];
-      L.easyButton("fa-arrows-alt", function() {
-        window.open(image.src, "_blank");
-      }).addTo(map);
-      L.easyButton("fa-globe", function() {
-        map.fitBounds(imageBounds);
-      }).addTo(map);
-      L.imageOverlay(image.src, imageBounds).addTo(map);
-      map.fitBounds(imageBounds);
-    });
-  });
+export const name = "geonovum/leafletfigures";
+
+export async function run(conf, doc, cb) {
   cb();
+  await document.respecIsReady;
+  document.querySelectorAll("figure.scalable img").forEach(image => {
+    const { width, height, src } = image;
+    const div = document.createElement("div");
+    const map = L.map(div, {
+      maxZoom: 4,
+      minZoom: -4,
+      center: [0, 0],
+      crs: L.CRS.Simple,
+    });
+    const imageBounds = [[0, 0], [height, width]];
+    image.parentElement.replaceChild(div, image);
+    map.setView([height / 2, width / 2], 1);
+    [
+      L.easyButton("fa-arrows-alt", () => window.open(src, "_blank")),
+      L.easyButton("fa-globe", () => map.fitBounds(imageBounds)),
+      L.imageOverlay(src, imageBounds),
+    ].forEach(item => item.addTo(map));
+    map.fitBounds(imageBounds);
+  });
 }
