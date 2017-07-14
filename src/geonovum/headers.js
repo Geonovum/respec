@@ -283,6 +283,7 @@ export function run(conf, doc, cb) {
   }
   conf.specStatus = conf.specStatus ? conf.specStatus.toUpperCase() : "";
   conf.specType = conf.specType ? conf.specType.toUpperCase() : "";
+  conf.pubDomain = conf.pubDomain ? conf.pubDomain.toUpperCase() : "";
   conf.isBasic = conf.specStatus === "GN-BASIS";
   conf.isRegular = !conf.isBasic;
   conf.isNoTrack = noTrackStatus.includes(conf.specStatus);
@@ -292,6 +293,9 @@ export function run(conf, doc, cb) {
   //Some errors
   if (!conf.specStatus) {
     pub("error", "Missing required configuration: specStatus");
+  }
+  if (!conf.pubDomain) {
+    pub("error", "Missing required configuration: pubDomain");
   }
   if (conf.isRegular && !conf.specType) {
     pub("error", "Missing required configuration: specType");
@@ -324,6 +328,8 @@ export function run(conf, doc, cb) {
   if (conf.isRegular)
     conf.thisVersion =
       "https://docs.geostandaarden.nl/" +
+      conf.pubDomain +
+      "/" +
       conf.specStatus.substr(3).toLowerCase() +
       "-" +
       conf.specType.toLowerCase() +
@@ -334,7 +340,11 @@ export function run(conf, doc, cb) {
       "/";
   if (conf.isRegular)
     conf.latestVersion =
-      "https://docs.geostandaarden.nl/" + conf.shortName + "/";
+      "https://docs.geostandaarden.nl/" +
+      conf.pubDomain +
+      "/" +
+      conf.shortName +
+      "/";
   if (conf.previousPublishDate && conf.previousStatus) {
     conf.previousPublishDate = new Date(conf.previousPublishDate);
     var prevStatus = conf.previousStatus.substr(3).toLowerCase();
@@ -342,6 +352,8 @@ export function run(conf, doc, cb) {
     conf.prevVersion = "None" + conf.previousPublishDate;
     conf.prevVersion =
       "https://docs.geostandaarden.nl/" +
+      conf.pubDomain +
+      "/" +
       prevStatus +
       "-" +
       prevType +
