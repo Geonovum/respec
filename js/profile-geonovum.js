@@ -37,7 +37,7 @@ require.config({
     "handlebars.runtime": "deps/handlebars",
     "deps/highlight": "https://www.w3.org/Tools/respec/respec-highlight",
   },
-  deps: ["deps/hyperhtml", "deps/url-search-params", "geonovum/deps/leaflet"],
+  deps: ["deps/hyperhtml", "deps/url-search-params", "geonovum/deps/leaflet", "geonovum/deps/proj4"],
 });
 
 define(
@@ -83,6 +83,7 @@ define(
     // "core/shiv",
     "core/location-hash",
     "geonovum/leafletfigures",
+    "geonovum/map",
     "geonovum/ui/about-respec",
     "geonovum/ui/dfn-list",
     "ui/save-html",

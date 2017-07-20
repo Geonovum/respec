@@ -26,7 +26,12 @@ const srcDesMap = new Map([
   ["./node_modules/url-search-params/build/url-search-params.js", "./js/deps/"],
   ["./node_modules/webidl2/lib/webidl2.js", "./js/deps/"],
   ["./node_modules/leaflet/dist/leaflet.js", "./js/geonovum/deps/"],
-  ["./node_modules/leaflet-easybutton/src/easy-button.js", "./js/geonovum/deps/"],
+  [
+    "./node_modules/leaflet-easybutton/src/easy-button.js",
+    "./js/geonovum/deps/",
+  ],
+  ["./node_modules/proj4/dist/proj4.js", "./js/geonovum/deps/"],
+  ["./node_modules/proj4leaflet/src/proj4leaflet.js", "./js/geonovum/deps/"],
 ]);
 
 function makePathResolver(base) {

@@ -48,6 +48,8 @@
     "leaflet-easybutton": "^2.2.0",
     "mocha": "^3.4.2",
     "moment": "^2.18.1",
+    "proj4": "^2.4.3",
+    "proj4leaflet": "^1.0.1",
     "requirejs": "^2.3.3",
     "text": "github:requirejs/text",
     "uglify-es": "^3.0.25",
