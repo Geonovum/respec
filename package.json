@@ -20,7 +20,10 @@
     "Kagami Sascha Rosylight <saschaplas@outlook.com>"
   ],
   "devDependencies": {
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
     "babel-cli": "^6.26.0",
+    "babel-loader": "8.0.0-beta.0",
     "babel-plugin-transform-es2015-modules-amd": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "babel-preset-stage-3-without-async": "^1.0.0",
@@ -61,12 +64,14 @@
     "text": "github:requirejs/text#d04de4ffd7bf5ba6cb80cdca2d40d4f6f52a1b1f",
     "uglify-es": "3.3.7",
     "url-search-params": "^1.0.0",
-    "webidl2": "^14.0.1"
+    "webidl2": "^14.0.1",
+    "webpack": "^4.0.0-beta.3"
   },
   "scripts": {
+    "babel:build-geo": "babel src -d js --source-maps -q --config-file .babelrc_geonovum",
     "babel:build": "babel src -d js --source-maps -q",
     "babel:watch": "babel src -d js --watch --source-maps",
-    "build:geo": "npm run copydeps && npm run babel:build && node ./tools/builder.js --profile=geonovum",
+    "build:geo": "npm run copydeps && npm run babel:build-geo && node ./tools/builder.js --profile=geonovum",
     "build:respec-w3c-common": "node ./tools/builder.js --profile=w3c-common",
     "build:components": "npm run copydeps && node ./tools/build-components.js && npm run babel:build",
     "build": "npm run snyk-protect && npm run build:components",

@@ -1,0 +1,11 @@
+{
+  "presets": [
+    [ "babel-preset-stage-3",
+      "@babel/env", {
+      "targets": {
+        "browsers": ["last 2 versions", "edge >= 14"]
+      }
+    }]
+  ],
+  "plugins": ["transform-es2015-modules-amd"]
+}
