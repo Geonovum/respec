@@ -70,7 +70,7 @@ function scanSections(sections, maxTocLevel, { prefix = "" } = {}) {
       : prefix + index;
     // Thijs Brentjens, Geonovum: fix for determining the level:
     // count the number of dots in the section number, to determine the level
-    const level = (secno.match(/\./g)||[]).length + 1;
+    const level = secno.split(".").length;
     if (level === 1) {
       secno += ".";
       // if this is a top level item, insert
