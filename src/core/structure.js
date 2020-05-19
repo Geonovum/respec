@@ -68,7 +68,9 @@ function scanSections(sections, maxTocLevel, { prefix = "" } = {}) {
       : appendixMode
       ? alphabet.charAt(index - lastNonAppendix)
       : prefix + index;
-    const level = Math.ceil(secno.length / 2);
+    // Thijs Brentjens, Geonovum: fix for determining the level:
+    // count the number of dots in the section number, to determine the level
+    const level = secno.split(".").length;
     if (level === 1) {
       secno += ".";
       // if this is a top level item, insert
@@ -232,7 +234,8 @@ function createTableOfContents(ol) {
     }
   }
 
-  const link = hyperHTML`<p role='navigation' id='back-to-top'><a href='#title'><abbr title='${l10n.back_to_top}'>&uarr;</abbr></a></p>`;
+  const link = hyperHTML`<p role='navigation' id='back-to-top'><a href='#title'>
+  <abbr title='${l10n.back_to_top}'>&uarr;</abbr></a></p>`;
   document.body.append(link);
 }
 
@@ -262,5 +265,4 @@ function updateEmptyAnchors(secMap) {
       }
       anchor.append(hyperHTML`<span class='sec-title'>${title.trim()}</span>`);
     });
-
 }
