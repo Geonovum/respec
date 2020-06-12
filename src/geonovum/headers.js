@@ -112,8 +112,7 @@ const GNVMDate = new Intl.DateTimeFormat(["nl"], {
 
 // Thijs: clean this up, for Geonovum
 // added statusses and types for Geonovum
-const status2maturity = {
-};
+const status2maturity = {};
 
 // Thijs Brentjens: added Geonovum statusses
 // https://github.com/Geonovum/respec/wiki/specStatus
@@ -135,7 +134,7 @@ const type2text = {
   WA: "Werkafspraak",
   // 2019-05-10 extend with 2 new types
   AL: "Algemeen",
-  BD: "Beheerdocumentatie"
+  BD: "Beheerdocumentatie",
 };
 
 const status2long = {
@@ -184,13 +183,14 @@ export function run(conf) {
   // Thijs Brentjens: TODO: decide by default unofficial?
   // conf.isUnofficial = conf.specStatus === "unofficial";
   conf.isUnofficial = true;
-  if (!conf.logos) { // conf.isUnofficial
+  if (!conf.logos) {
     conf.logos = [];
   }
   conf.specStatus = conf.specStatus ? conf.specStatus.toUpperCase() : "";
   conf.specType = conf.specType ? conf.specType.toUpperCase() : "";
   conf.pubDomain = conf.pubDomain ? conf.pubDomain.toLowerCase() : "";
-  conf.hasBeenPublished = conf.publishDate ? true : false
+  conf.hasBeenPublished =
+    conf.publishDate || conf.previousPublishDate ? true : false;
   // Thijs Brentjens: TODO: document license types for Geonovum
   conf.isCCBY = conf.license === "cc-by";
   conf.isCCBYND = conf.license === "cc-by-nd";
@@ -227,8 +227,8 @@ export function run(conf) {
       // parse the org and repo name to construct a github.io URI if a github URI is provided
       // https://github.com/Geonovum/respec/issues/141
       // https://github.com/{org}/{repo} should be rewritten to https://{org}.github.io/{repo}/
-      var githubParts = conf.github.split('github.com/')[1].split('/');
-      conf.edDraftURI = "https://" + githubParts[0] + ".github.io/" + githubParts[1];
+      const githubParts = conf.github.split("github.com/")[1].split("/");
+      conf.edDraftURI = `https://${githubParts[0]}.github.io/${githubParts[1]}`;
     }
     if (conf.specStatus === "ED")
       pub("warn", "Editor's Drafts should set edDraftURI.");
@@ -255,47 +255,37 @@ export function run(conf) {
   // Only show latestVersion if a publishDate has been set. see issue https://github.com/Geonovum/respec/issues/93
   if (conf.isRegular && conf.hasBeenPublished)
     // Thijs Brentjens: see
-    conf.latestVersion =
-      "https://docs.geostandaarden.nl/" +
-      conf.pubDomain +
-      "/" +
-      conf.shortName +
-      "/";
+    conf.latestVersion = `https://docs.geostandaarden.nl/${conf.pubDomain}/
+    ${conf.shortName}/`;
 
   // Thijs Brentjens: support previousMaturity as previousStatus
-  if (conf.previousMaturity && !conf.previousStatus) conf.previousStatus = conf.previousMaturity
+  if (conf.previousMaturity && !conf.previousStatus)
+    conf.previousStatus = conf.previousMaturity;
   // Thijs Brentjens: default to current specStatus if previousStatus is not provided
-  if (conf.previousPublishDate && !conf.previousStatus) conf.previousStatus = conf.specStatus
+  if (conf.previousPublishDate && !conf.previousStatus)
+    conf.previousStatus = conf.specStatus;
   if (conf.previousPublishDate && conf.previousStatus) {
     conf.previousPublishDate = validateDateAndRecover(
       conf,
       "previousPublishDate"
     );
-    var prevStatus = conf.previousStatus.substr(3).toLowerCase();
+    const prevStatus = conf.previousStatus.substr(3).toLowerCase();
     // Thijs Brentjens: default to current spectype
     // TODO: should the prev-/spectype always be in the WP URL too?
-    var prevType="";
+    let prevType = "";
     if (conf.previousType) {
       prevType = conf.previousType.toLowerCase();
     } else {
       prevType = conf.specType.toLowerCase();
     }
-    conf.prevVersion = "None" + conf.previousPublishDate;
-    conf.prevVersion =
-      "https://docs.geostandaarden.nl/" +
-      conf.pubDomain +
-      "/" +
-      prevStatus +
-      "-" +
-      prevType +
-      "-" +
-      conf.shortName +
-      "-" +
-      concatDate(conf.previousPublishDate) +
-      "/";
+    conf.prevVersion = `https://docs.geostandaarden.nl/${
+      conf.pubDomain
+    }/${prevStatus}-${prevType}-${conf.shortName}-${concatDate(
+      conf.previousPublishDate
+    )}/`;
   }
 
-  var peopCheck = function(it) {
+  const peopCheck = function(it) {
     if (!it.name) pub("error", "All authors and editors must have a name.");
   };
   if (conf.editors) {
