@@ -255,8 +255,7 @@ export function run(conf) {
   // Only show latestVersion if a publishDate has been set. see issue https://github.com/Geonovum/respec/issues/93
   if (conf.isRegular && conf.hasBeenPublished)
     // Thijs Brentjens: see
-    conf.latestVersion = `https://docs.geostandaarden.nl/${conf.pubDomain}/
-    ${conf.shortName}/`;
+    conf.latestVersion = `https://docs.geostandaarden.nl/${conf.pubDomain}/${conf.shortName}/`;
 
   // Thijs Brentjens: support previousMaturity as previousStatus
   if (conf.previousMaturity && !conf.previousStatus)
